@@ -1,4 +1,4 @@
-const BASE_URL=''
+const BASE_URL='https://app.currencyapi.com/dashboard';
 const dropdowns =document.querySelectorAll('.dropdown select');
 const btn=document.querySelector('form button');
 const fromCurr=document.querySelector('.from select');
@@ -29,9 +29,9 @@ const updateExchangeRate=async ()=>{
         amtVal=1;
         amount.value='1';
     }
-    const URL=`${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
-    let response= await fetch(URL);
-    let data= await response.json();
+    const URL=`${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.dashboard`;
+    let response= await fetch(BASE_URL);
+    let data= await response.dashboard();
     let rate=data[toCurr.value.toLowerCase()];
     let finalAmount=amtVal*rate;
     msg.innerText=`${amtVal}${fromCurr.value}=${finalAmount}${toCurr.value}`
@@ -50,7 +50,7 @@ btn.addEventListener('click',(evt)=>{
     updateExchangeRate();
    
 });
-document.addEventListener('load',()=>{
+window.addEventListener('load',()=>{
     updateExchangeRate();
 });
 
